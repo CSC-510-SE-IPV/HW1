@@ -1,9 +1,8 @@
 #Printing the sum of the given array
-def error1():
-    array = [1, 6, 3, 7, 9]
+def array_sum(array):
     sum=0
-    for i in range (0,5):
+    for i in range (0,len(array)):
         sum+=array[i]
     return sum
 
-print("Sum : ",error1())
+print("Sum : ",array_sum([1,2,3]))
