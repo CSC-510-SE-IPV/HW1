@@ -46,3 +46,6 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: junit/test-results.xml  # Adjust if necessary
+    
+    - name: Display Coverage report
+      run : cat junit/test-results.xml
