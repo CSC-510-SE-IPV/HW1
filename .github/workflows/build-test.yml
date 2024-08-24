@@ -24,7 +24,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build 
+        pip install build
+    - name : Create the test report directory
+      run: mkdir -f junit   
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
