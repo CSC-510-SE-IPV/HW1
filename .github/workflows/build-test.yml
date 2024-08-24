@@ -26,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install build
     - name : Create the test report directory
-      run: mkdir -f junit   
+      run: mkdir -p junit   
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
