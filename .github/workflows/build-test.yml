@@ -30,7 +30,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
-        pytest test_myfile.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+        pytest test_myfile.py --doctest-modules --junitxml=junit/test-results.xml --cov=myfile --cov-report=xml --cov-report=html
 
     - name: List files after tests
       run: ls -R .
