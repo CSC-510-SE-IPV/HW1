@@ -45,7 +45,5 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: junit/test-results.xml  # Adjust if necessary
+        files: coverage.xml  # Adjust if necessary
     
-    - name: Display Coverage report
-      run : cat junit/test-results.xml
