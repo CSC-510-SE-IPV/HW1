@@ -32,6 +32,9 @@ jobs:
         pip install pytest pytest-cov
         pytest test_myfile.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
 
+    - name: List files after tests
+      run: ls -R .
+
     - name: Upload test results
       uses: actions/upload-artifact@v3
       with:
@@ -42,4 +45,4 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage.xml  # Adjust if necessary
+        files: junit/test-results.xml  # Adjust if necessary
