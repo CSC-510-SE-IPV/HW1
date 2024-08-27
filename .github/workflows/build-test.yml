@@ -29,7 +29,7 @@ jobs:
       run: |
         pip install pytest pytest-cov
         pytest test_myfile.py --doctest-modules --cov=myfile --cov-report=xml --cov-report=html
-      continue-on-error: true   
+      # continue-on-error: true   
 
     - name: List files after tests
       run: ls -R .
