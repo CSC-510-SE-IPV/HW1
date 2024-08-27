@@ -24,24 +24,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
-    - name : Create the test report directory
-      run: mkdir -p junit   
+        pip install build  
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
-        pytest test_myfile.py --doctest-modules --junitxml=junit/test-results.xml --cov=myfile --cov-report=xml --cov-report=html
+        pytest test_myfile.py --doctest-modules --cov=myfile --cov-report=xml --cov-report=html
       continue-on-error: true   
 
     - name: List files after tests
       run: ls -R .
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: junit/test-results.xml  # Path to the generated XML file
-    
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
