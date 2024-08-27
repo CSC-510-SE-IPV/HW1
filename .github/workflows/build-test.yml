@@ -29,13 +29,22 @@ jobs:
       run: |
         pip install pytest pytest-cov
         pytest test_myfile.py --doctest-modules --cov=myfile --cov-report=xml --cov-report=html
-      # continue-on-error: true   
+      continue-on-error: true   
+    
+    - name: Upload test results (always run this step)
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: junit/test-results.xml
 
     - name: List files after tests
       run: ls -R .
 
-    - name: Upload coverage to Codecov
+    - name: Upload coverage to Codecov (always run this step)
+      if: always()
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: coverage.xml  # Adjust if necessary
+        files: coverage.xml
+        fail_ci_if_error: true
