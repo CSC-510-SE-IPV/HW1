@@ -26,17 +26,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install build  
     - name: Test with pytest
+      id: pytest
       run: |
         pip install pytest pytest-cov
         pytest test_myfile.py --doctest-modules --cov=myfile --cov-report=xml --cov-report=html
       continue-on-error: true   
     
-    - name: Upload test results (always run this step)
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: junit/test-results.xml
+    
 
     - name: List files after tests
       run: ls -R .
@@ -47,4 +43,8 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.xml
-        fail_ci_if_error: true
+
+    - name: Fail the job if tests failed
+      if: failure()  # This step will cause the job to fail if the pytest step failed
+      run: exit 1
+        
